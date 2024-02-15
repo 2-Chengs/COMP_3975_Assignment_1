@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function handleRegistration(event) {
+            event.preventDefault(); // Prevent the default form submission
+        
+            const form = document.getElementById('registrationForm');
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData.entries());
+            const jsonData = JSON.stringify(data);
+        
+            fetch('http://localhost:8888/process_register.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json', // Indicate JSON data
+                },
+                body: jsonData // Send JSON data
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                console.log("this all worked properly")
+                return response.json();
+            })
+            .then(data => {
+                console.log(data); // Handle the response data
+                window.location.href = '/login.html';
+                alert('Registration successful!');
+               
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Registration failed!');
+            });
+        }
+        </script>
+        
+        
+        
+    
+</head>
+<body>
+    <h1>Register Page</h1>
+    <div class="form-container">
+        <form id="registrationForm" action="http://localhost:8888/process_register.php" method="post" onsubmit="handleRegistration(event)">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+    
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required minlength="8">
+    
+            <input type="submit" value="Register">
+        </form>
+    </div>
+</body>
+</html>

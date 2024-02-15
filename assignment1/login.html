@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <script>
+        window.onload = function() {
+            fetch('http://localhost:8888/check_session.php')
+            .then(response => response.json())
+            .then(data => {
+                if (data.loggedIn) {
+                    window.location.href = 'home.html'; // Redirect if already logged in
+                } else {
+                    console.log('Not logged in');
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        };
+
+        function handleLogin(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            // Prepare the data to be sent as JSON
+            const form = document.getElementById('loginForm');
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData.entries());
+            const jsonData = JSON.stringify(data);
+
+            // Submit form data using fetch to the API endpoint
+            fetch('http://localhost:8888/process_login.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: jsonData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    window.location.href = 'home.html'
+                    alert('Login successful!');
+                    
+                    // Redirect to another page or update the UI accordingly
+                } else {
+                    alert('Login failed: ' + data.error);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Login failed!');
+            });
+        }
+    </script>
+</head>
+<body>
+    <h1>Login Page</h1>
+    <form id="loginForm" onsubmit="handleLogin(event)">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        <input type="submit" value="Login">
+    </form>
+</body>
+</html>
