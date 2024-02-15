@@ -1,6 +1,6 @@
 <?php
 session_start();
-$_SESSION['test_two'] = 'session is working';
+// $_SESSION['test_two'] = 'session is test test test test';
 
 
 header("Content-Type: application/json");
@@ -66,7 +66,7 @@ if ($record) {
         $stmt->bindValue(':user_id', $record['id'], SQLITE3_INTEGER);
         $stmt->execute();
         
-        // $_SESSION['user_id'] = "test";
+        $_SESSION['user_id'] = "test";
         // Send the session string back to the client
         
         

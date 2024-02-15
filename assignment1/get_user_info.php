@@ -11,6 +11,8 @@ if (isset($_SESSION['test_two'])) {
 } else {
     echo 'Session is not working';
 }
+
+// echo 'Testing';
 // Your existing PHP code...
 if (isset($_SESSION['user_id'])) {
     echo 'Session ID: ' . session_id() . '<br>';

@@ -38,21 +38,6 @@ if (empty($username) || empty($password)) {
     exit;
 }
 
-// Hash the password
-$db = new SQLite3($_SERVER['DOCUMENT_ROOT'] . '/bank.sqlite');
-
-$SQL_create_table = "CREATE TABLE IF NOT EXISTS users(
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    username VARCHAR(50),
-    password TEXT,
-    is_admin BOOLEAN DEFAULT 0,
-    session_string TEXT
-);";
-
-$db->exec($SQL_create_table);
-
-$passwordHash = password_hash($password, PASSWORD_DEFAULT);
-
 try {
     $stmt = $db->prepare("INSERT INTO users (username, password) VALUES (:username, :password)");
     $stmt->bindValue(':username', $username, SQLITE3_TEXT);
