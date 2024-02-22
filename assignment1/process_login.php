@@ -1,7 +1,5 @@
 <?php
 session_start();
-// $_SESSION['test_two'] = 'session is test test test test';
-
 
 header("Content-Type: application/json");
 header("Access-Control-Allow-Origin: http://127.0.0.1:5500");
@@ -18,14 +16,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
     exit;
 }
 
-// if (isset($_SESSION['user_id'])) {
-//     // Session variable exists, user is logged in
-//     $user_id = $_SESSION['user_id'];
-//     echo "User ID: $user_id";
-// } else {
-//     // Session variable does not exist, user is not logged in
-//     echo "User is not logged in";
-// }
+if (isset($_SESSION['user_id'])) {
+    // Session variable exists, user is logged in
+    $user_id = $_SESSION['user_id'];
+    echo "User ID: $user_id";
+} else {
+    // Session variable does not exist, user is not logged in
+    echo "User is not logged in";
+}
 
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {

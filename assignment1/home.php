@@ -22,10 +22,20 @@
         });
     </script>
         
-        
+    
 </head>
 <body>
+    <?php 
+    include("inc_db.php");
+    include("process_import.php");
+    ?>
     <h1>Welcome to my home</h1>
+    <form action="process_import.php" method="post" enctype="multipart/form-data">
+    Select CSV File to Upload:
+        <input type="file" name="fileToUpload" id="fileToUpload">
+        <input type="submit" value="Submit" name="submit">
+    </form>
+
     <p id="greeting">Loading...</p>
 
 </body>

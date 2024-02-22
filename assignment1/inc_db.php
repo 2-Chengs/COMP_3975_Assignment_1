@@ -13,14 +13,23 @@ $SQL_create_table_users = "CREATE TABLE IF NOT EXISTS users(
 
 $db->exec($SQL_create_table_users);
 
-$passwordHash = password_hash($password, PASSWORD_DEFAULT);
-
 $create_table_transactions = "CREATE TABLE IF NOT EXISTS transactions(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     date DATE,
-    name VARCHAR(50),
-    user_id INTEGER,
-    FOREIGN KEY(user_id) REFERENCES users(id)
+    name VARCHAR(150),
+    deduction FLOAT,
+    increase FLOAT,
+    balance FLOAT
 );";
+
+$db->exec($create_table_transactions);
+
+$create_table_buckets = "CREATE TABLE IF NOT EXISTS buckets(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name VARCHAR(150),
+    amount FLOAT
+);";
+
+$db->exec($create_table_buckets);
 
 ?>

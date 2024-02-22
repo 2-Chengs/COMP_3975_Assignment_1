@@ -11,7 +11,7 @@
             .then(response => response.json())
             .then(data => {
                 if (data.loggedIn) {
-                    window.location.href = 'home.html'; // Redirect if already logged in
+                    window.location.href = 'home.php'; // Redirect if already logged in
                 } else {
                     console.log('Not logged in');
                 }
@@ -39,7 +39,7 @@
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    window.location.href = 'home.html'
+                    window.location.href = 'home.php'
                     alert('Login successful!');
                     
                     // Redirect to another page or update the UI accordingly

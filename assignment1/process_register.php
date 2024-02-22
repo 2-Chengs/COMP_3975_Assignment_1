@@ -1,4 +1,5 @@
 <?php
+include("inc_db.php");
 header("Content-Type: application/json");
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Credentials: true");
@@ -26,6 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST') {
 $data = json_decode(file_get_contents('php://input'), true);
 $username = $data['username'] ?? '';
 $password = $data['password'] ?? '';
+$passwordHash = password_hash($password, PASSWORD_DEFAULT);
 // Log the raw input to see what is being received
 $rawData = file_get_contents('php://input');
 error_log($rawData); // Check your error log to see if the data is correct
