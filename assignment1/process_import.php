@@ -18,14 +18,25 @@ if (isset($_POST["submit"])) {
                 $name = SQLite3::escapeString($data[1]);
                 $deduction = SQLite3::escapeString($data[2]);
                 $increase = SQLite3::escapeString($data[3]);
-                $balance = SQLite3::escapeString($data[4]);
 
-                $SQLinsert = "INSERT INTO Transactions (date, name, deduction, increase, balance)";
-                $SQLinsert .= " VALUES ('$date', '$name', '$deduction', '$increase', '$balance')";
+                $deduction = floatval($deduction);
+                $increase = floatval($increase);
+
+                $SQLinsert = "INSERT INTO Transactions (date, name, deduction, increase)";
+                $SQLinsert .= " VALUES ('$date', '$name', '$deduction', '$increase')";
 
                 $db->exec($SQLinsert);
             }
             fclose($handle);
+        
+            // Rename file after successful import
+            $newName = $target_file . ".imported";
+            if(rename($target_file, $newName)) {
+                echo "File has been renamed to " . $newName;
+            } else {
+                echo "Error renaming file to " . $newName;
+            }
+
         }
         header('Location: home.php');
         exit;
@@ -33,6 +44,4 @@ if (isset($_POST["submit"])) {
         echo "Sorry, there was an error uploading your file.";
     }
 }
-$db->close();
-
 ?>
