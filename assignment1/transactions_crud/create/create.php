@@ -35,3 +35,6 @@
 </div>
 
 <br />
+<?php 
+include("../../inc_footer.php");
+?>

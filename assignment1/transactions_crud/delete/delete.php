@@ -71,3 +71,6 @@
 </form>
 
 <br />
+<?php 
+include("../../inc_footer.php");
+?>

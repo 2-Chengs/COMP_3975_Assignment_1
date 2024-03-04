@@ -4,10 +4,10 @@ include("inc_header.php");
     <h1>
         Transactions
     </h1>
-    <a class='btn btn-small btn-primary' href='/transactions_crud/create/create.php'>Create Transaction</a>
+    <a class='btn btn-small btn-success' href='/transactions_crud/create/create.php'>Create Transaction</a>
     <a class='btn btn-small btn-primary' href='home.php'>Home</a>
     <a class='btn btn-small btn-primary' href='buckets.php'>Buckets List</a>
-    <a class='btn btn-small btn-primary' href='reports.php'>Reports</a>
+    <a class='btn btn-small btn-primary' href='reports/reports.php'>Reports</a>
 
     <?php 
     include("inc_db.php");

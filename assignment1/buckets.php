@@ -4,10 +4,10 @@ include("inc_header.php");
     <h1>
         Buckets
     </h1>
-    <a class='btn btn-small btn-primary' href='/buckets_crud/create/create.php'>Create Buckets</a>
+    <a class='btn btn-small btn-success' href='/buckets_crud/create/create.php'>Create Buckets</a>
     <a class='btn btn-small btn-primary' href='home.php'>Home</a>
     <a class='btn btn-small btn-primary' href='transactions.php'>Transactions List</a>
-    <a class='btn btn-small btn-primary' href='reports.php'>Reports</a>
+    <a class='btn btn-small btn-primary' href='reports/reports.php'>Reports</a>
 
     <?php 
     include("inc_db.php");
@@ -36,4 +36,6 @@ include("inc_header.php");
 
     }
     ?>
-</body>
+<?php 
+include("inc_footer.php");
+?>

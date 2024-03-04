@@ -26,7 +26,7 @@ include("inc_header.php");
     <h1>Welcome to my home</h1>
     <a class='btn btn-small btn-primary' href='transactions.php'>Transaction List</a>
     <a class='btn btn-small btn-primary' href='buckets.php'>Buckets List</a>
-    <a class='btn btn-small btn-primary' href='reports.php'>Reports</a>
+    <a class='btn btn-small btn-primary' href='reports/reports.php'>Reports</a>
 
     <form action="process_import.php" method="post" enctype="multipart/form-data">
     Select CSV File to Upload:
@@ -36,5 +36,6 @@ include("inc_header.php");
 
     <p id="greeting">Loading...</p>
 
-</body>
-</html>
+<?php 
+include("inc_footer.php");
+?>

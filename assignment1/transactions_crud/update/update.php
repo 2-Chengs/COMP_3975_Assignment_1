@@ -72,3 +72,6 @@ if (isset($_GET['id'])) {
 </div>
 
 <br />
+<?php 
+include("../../inc_footer.php");
+?>
