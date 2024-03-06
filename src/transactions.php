@@ -1,5 +1,13 @@
 <?php 
+session_start();
 include("inc_header.php");
+if (isset($_SESSION['username'])) {
+    $username = $_SESSION['username']; // Assuming you store the username in session when logging in
+} else {
+    header("Location: login.php");
+    exit;
+    $username = null; // No user logged in
+}
 ?>
     <h1>
         Transactions

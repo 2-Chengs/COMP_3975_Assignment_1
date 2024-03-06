@@ -24,25 +24,29 @@ if (empty($username) || empty($password)) {
     exit;
 }
 
-$stmt = $db->prepare('SELECT id, username, password, is_admin FROM users WHERE username = :username');
+$stmt = $db->prepare('SELECT id, username, password, is_admin, is_approved FROM users WHERE username = :username');
 $stmt->bindValue(':username', $username, SQLITE3_TEXT);
 $result = $stmt->execute();
 
 $record = $result->fetchArray(SQLITE3_ASSOC);
 
 if ($record) {
-    if ($password === $record['password']) { // Direct comparison without password_verify()
+    if ($record['is_approved'] == 1 && $password === $record['password']) { // Direct comparison without password_verify()
         // Login successful, set session variables
         $_SESSION['user_id'] = $record['id']; // Assuming 'id' is the unique user identifier in your database
         $_SESSION['username'] = $record['username']; // Store the username in session
         $_SESSION['is_admin'] = $record['is_admin'];
+        $_SESSION['is_approved'] = $record['is_approved'];
 
         header("Location: home.php"); // Redirect to home page after successful login
         exit;
-    } else {
+    } else if ($record['is_approved'] == 0) {
+        header("Location: login.php?error=".urlencode("Your account is not approved yet. Please contact the administrator."));
+        exit;
+    }else {
         // Password does not match
         $_SESSION['error'] = 'Invalid username or password';
-        header("Location: login.php");
+        header("Location: login.php?error=".urlencode("Invalid username or password. Please try again."));
         exit;
     }
 } else {

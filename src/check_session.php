@@ -14,7 +14,6 @@ if (is_writable(session_save_path())) {
     echo 'Session path "'.session_save_path().'" is writable for PHP!';
 }
 
-
 if (isset($_SESSION['user_id'])) {
     echo json_encode(['loggedIn' => true]);
 } else {

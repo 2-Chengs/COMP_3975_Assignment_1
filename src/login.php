@@ -12,6 +12,11 @@
     <?php if (isset($_GET['success']) && $_GET['success'] == 'registration'): ?>
         <p>Registration successful! Please log in.</p>
     <?php endif; ?>
+    <?php 
+        if(isset($_GET['error'])) {
+            echo "<p style='color:red;'>".$_GET['error']."</p>";
+        }
+    ?>
     <form id="loginForm" action="process_login.php" method="post">
         <label for="username">Username:</label>
         <input type="text" id="username" name="username" required>

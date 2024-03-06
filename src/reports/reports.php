@@ -1,5 +1,14 @@
-<?php include("../inc_header.php"); 
+<?php 
+session_start();
+include("../inc_header.php"); 
     $error_message = isset($_GET['error']) ? $_GET['error'] : '';
+    if (isset($_SESSION['username'])) {
+        $username = $_SESSION['username']; // Assuming you store the username in session when logging in
+    } else {
+        header("Location: login.php");
+        exit;
+        $username = null; // No user logged in
+    }
 ?>
 
 <h1>Enter  Year</h1>

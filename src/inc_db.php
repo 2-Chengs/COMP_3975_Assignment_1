@@ -24,8 +24,8 @@ $create_table_transactions = "CREATE TABLE IF NOT EXISTS transactions(
 
 $db->exec($create_table_transactions);
 
-// Uncomment below if need to reset buckets table
-// $db->exec("DROP TABLE buckets;");
+// Uncomment below if need to do quick statements
+// $db->exec("UPDATE users SET is_approved = 1 WHERE username = 'aa@aa.aa'");
 $create_table_buckets = "CREATE TABLE IF NOT EXISTS buckets (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     entry_name VARCHAR(255),

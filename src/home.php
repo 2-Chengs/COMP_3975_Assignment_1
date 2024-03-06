@@ -9,9 +9,8 @@ include("inc_db.php"); // Make sure this path correctly points to your database 
 if (isset($_SESSION['username'])) {
     $username = $_SESSION['username']; // Assuming you store the username in session when logging in
 } else {
-    // Optionally, redirect to login page if not logged in
-    // header("Location: login.php");
-    // exit;
+    header("Location: login.php");
+    exit;
     $username = null; // No user logged in
 }
 ?>
