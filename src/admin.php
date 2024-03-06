@@ -50,13 +50,20 @@ while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
             <th>Is Approved</th>
         </tr>
         <?php foreach ($users as $user): ?>
-            <tr>
-                <td><?php echo htmlspecialchars($user['id']); ?></td>
-                <td><?php echo htmlspecialchars($user['username']); ?></td>
-                <td><?php echo $user['is_admin'] == 1 ? 'Yes' : 'No'; ?></td>
-                <td><?php echo $user['is_approved'] == 1 ? 'Yes' : 'No'; ?></td>
-            </tr>
-        <?php endforeach; ?>
+    <tr>
+        <td><?php echo htmlspecialchars($user['id']); ?></td>
+        <td><?php echo htmlspecialchars($user['username']); ?></td>
+        <td><?php echo $user['is_admin'] == 1 ? 'Yes' : 'No'; ?></td>
+        <td><?php echo $user['is_approved'] == 1 ? 'Yes' : 'No'; ?>
+            <form action="toggle_approval.php" method="post" style="display:inline;">
+                <input type="hidden" name="user_id" value="<?php echo $user['id']; ?>">
+                <input type="hidden" name="current_status" value="<?php echo $user['is_approved']; ?>">
+                <input type="submit" value="Toggle Approval">
+            </form>
+        </td>
+    </tr>
+<?php endforeach; ?>
+
     </table>
 </body>
 </html>

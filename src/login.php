@@ -1,3 +1,11 @@
+<?php 
+    session_start();
+        if(isset($_SESSION['error'])) {
+            echo "<p style='color:red;'>".$_SESSION['error']."</p>";
+            unset($_SESSION['error']); // Clear the error message after displaying it
+        }
+    ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,6 +36,7 @@
     <div style="margin-top: 20px;">
         <p>Don't have an account? <a href="registration_form.php">Register here</a>.</p>
     </div>
+
 </body>
 </html>
 
