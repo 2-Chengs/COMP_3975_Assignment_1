@@ -1,3 +1,19 @@
+<?php 
+    session_start(); // Ensure session is started
+    if (isset($_SESSION['user_id'])) { // Adjust 'user_id' to your session variable
+        header('Location: home.php'); // Redirect them to their dashboard
+        exit;
+    }
+    if (isset($_SESSION['error'])) {
+        echo '<p style="color:red;">' . $_SESSION['error'] . '</p>';
+        unset($_SESSION['error']); // Clear the message after displaying it
+    }
+    if (isset($_SESSION['success'])) {
+        echo '<p style="color:green;">' . $_SESSION['success'] . '</p>';
+        unset($_SESSION['success']); // Clear the message after displaying it
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,17 +40,7 @@
         </div>
     </div>
 
-    <?php 
-    session_start(); // Ensure session is started
-    if (isset($_SESSION['error'])) {
-        echo '<p style="color:red;">' . $_SESSION['error'] . '</p>';
-        unset($_SESSION['error']); // Clear the message after displaying it
-    }
-    if (isset($_SESSION['success'])) {
-        echo '<p style="color:green;">' . $_SESSION['success'] . '</p>';
-        unset($_SESSION['success']); // Clear the message after displaying it
-    }
-    ?>
+
 
 </body>
 </html>

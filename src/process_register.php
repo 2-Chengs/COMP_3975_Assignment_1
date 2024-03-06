@@ -48,14 +48,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt->bindValue(':is_admin', $is_admin, SQLITE3_INTEGER);
 
             if ($stmt->execute()) {
-                $_SESSION['success'] = 'Registration successful'; // Store success message in session
-                header("Location: login.php?success=registration"); // Redirect to login page with success parameter
+                // Set a message indicating that the account awaits admin approval
+                $_SESSION['message'] = 'Your account has been created but is not yet approved. Please wait for the administrator to grant you access.';
+                header("Location: login.php"); // Redirect to login page
                 exit;
             } else {
                 $_SESSION['error'] = 'An error occurred during the registration process'; // Store error message in session
                 header("Location: registration_form.php");
                 exit;
             }
+            
         } catch (Exception $e) {
             $_SESSION['error'] = 'An error occurred: ' . $e->getMessage(); // Store error message in session
             header("Location: registration_form.php");

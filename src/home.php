@@ -1,6 +1,5 @@
 <?php 
 session_start();
-var_dump($_SESSION);
 include("inc_header.php");
 include("inc_db.php"); // Make sure this path correctly points to your database connection script
  // Start the session to access session variables

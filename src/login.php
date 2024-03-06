@@ -1,10 +1,14 @@
 <?php 
     session_start();
-        if(isset($_SESSION['error'])) {
-            echo "<p style='color:red;'>".$_SESSION['error']."</p>";
-            unset($_SESSION['error']); // Clear the error message after displaying it
-        }
-    ?>
+    if (isset($_SESSION['user_id'])) { // Adjust 'user_id' to your session variable
+        header('Location: home.php'); // Redirect them to their dashboard
+        exit;
+    }
+    if(isset($_SESSION['message'])) {
+        echo "<p style='color:blue;'>" . htmlspecialchars($_SESSION['message']) . "</p>";
+        unset($_SESSION['message']); // Clear the message after displaying it
+    }
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -16,7 +20,16 @@
 </head>
 <body>
     <h1>Login Page</h1>
-    <!-- Check if the query parameter 'success' is set in the URL -->
+    <?php 
+        if(isset($_SESSION['error'])) {
+            echo "<p style='color:red;'>".$_SESSION['error']."</p>";
+            unset($_SESSION['error']); // Clear the error message after displaying it
+        }
+        if(isset($_SESSION['message'])) {
+            echo "<p style='color:blue;'>".$_SESSION['message']."</p>";
+            unset($_SESSION['message']); // Clear the message after displaying it
+        }
+    ?>
     <?php if (isset($_GET['success']) && $_GET['success'] == 'registration'): ?>
         <p>Registration successful! Please log in.</p>
     <?php endif; ?>
@@ -38,6 +51,7 @@
     </div>
 
 </body>
+
 </html>
 
 
